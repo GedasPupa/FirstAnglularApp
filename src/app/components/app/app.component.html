@@ -1,0 +1,55 @@
+<hr>
+
+<app-header></app-header>
+
+<hr>
+<div class="container">
+<p>Example with incrementation button</p>
+<p>{{counter}}</p>
+<button (click)="incrementCounter()">Click Me!</button>
+<br>
+<div>Mouse x: {{ mouseX }} mouse y: {{ mouseY }}</div>
+<div #rect (mousemove)="mouseMoveHandler($event)" style="height: 200px; width: 200px; background-color: bisque;">.</div>
+
+<br><br>
+<h4> BANANA IN THE BOX - [()] </h4>
+<input [(ngModel)]="text" /> <!-- BANANA IN THE BOX -->
+<p>{{text}}</p>
+
+<h4> Event binding + Interpolation </h4>
+<input (input)="inputChange($event)" type="text" value={{text2}}> <!-- 2 single way binding! 1st: event binding  -->
+<p>{{text2}}</p> <!-- 2nd: Interpolation -->
+<br>
+<!-- DIRECTIVES -->
+<h4>Message Toggler</h4>
+<p *ngIf="isMessageShown">The message is shown!</p>
+<p *ngIf="!isMessageShown" style="opacity: 0.3;">The message is not shown!</p>
+<button (click)="messageTogler($event)" class="btn">Click for Toggle {{isMessageShown ? 'OFF' : 'ON'}}</button>
+<br><br><br><br><br>
+
+<label>FILTER:</label>
+<input type="text" (input)="onFilter($event)" class="filter-input"/>
+<br>
+<table class='table' *ngIf="filterData.length > 0">
+  <thead>
+    <tr>
+      <th>Vardas</th>
+      <th>Amzius</th>
+      <th>Alga</th>
+      <th>Valiuta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filterData">
+      <td>{{ ((item.vardas.charAt(0) | uppercase) + (item.vardas.slice(1, item.vardas.length) | lowercase))}} ({{item.vardas}})</td>
+      <td>{{item.amzius}}</td>
+      <td>{{item.salary | currency : (item.currency | uppercase ) : 'symbol' : '1.2-2'}}</td>
+      <td>{{item.currency}}</td>
+
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="filterData.length === 0" class="alert alert-warning">No data!</p>
+
+
+
