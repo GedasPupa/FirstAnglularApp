@@ -25,9 +25,10 @@ import { MokomesComponent } from './components/mokomes/mokomes.component';
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'home', component: AppComponent },
+      { path: 'home', component: MainComponent },
       { path: 'zmogeliai', component: ZmogeliaiComponent },
       { path: 'mokomes', component: MokomesComponent },
+      { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ]),
   ],
   providers: [],
