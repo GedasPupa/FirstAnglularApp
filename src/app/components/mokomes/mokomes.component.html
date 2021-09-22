@@ -1,0 +1,22 @@
+<p>Example with incrementation button</p>
+<p>{{counter}}</p>
+<button (click)="incrementCounter()">Click Me!</button>
+<br>
+<div>Mouse x: {{ mouseX }} mouse y: {{ mouseY }}</div>
+<div #rect (mousemove)="mouseMoveHandler($event)" style="height: 200px; width: 200px; background-color: bisque;">.</div>
+
+<br><br>
+<h4> BANANA IN THE BOX - [()] </h4>
+<input [(ngModel)]="text" /> <!-- BANANA IN THE BOX -->
+<p>{{text}}</p>
+
+<h4> Event binding + Interpolation </h4>
+<input (input)="inputChange($event)" type="text" value={{text2}}> <!-- 2 single way binding! 1st: event binding  -->
+<p>{{text2}}</p> <!-- 2nd: Interpolation -->
+<br>
+<!-- DIRECTIVES -->
+<h4>Message Toggler</h4>
+<p *ngIf="isMessageShown">The message is shown!</p>
+<p *ngIf="!isMessageShown" style="opacity: 0.3;">The message is not shown!</p>
+<button (click)="messageTogler($event)" class="btn">Click for Toggle {{isMessageShown ? 'OFF' : 'ON'}}</button>
+<br><br><br><br><br>

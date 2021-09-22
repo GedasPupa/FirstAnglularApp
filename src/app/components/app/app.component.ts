@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { zmogelis, Zmogelis } from 'src/app/models/Zmogelis';
+import { ZmogeliaiService } from 'src/app/services/zmogeliai.service';
 
 @Component({
   selector: 'app-root',
@@ -10,79 +11,6 @@ import { zmogelis, Zmogelis } from 'src/app/models/Zmogelis';
 })
 export class AppComponent {
   title = 'FirstAngularApp';
-  counter = 0;
-  text = 'Placeholder text...';
-  text2 = 'Second pl...';
-
-  inputChange($event: any) {
-    this.text2 = $event.target.value;
-  }
-
-  incrementCounter() {
-    this.counter++;
-  }
-
-  @ViewChild('rect') rect: ElementRef | undefined;
-
-  ngAfterViewInit() {
-    console.log(this.rect?.nativeElement.getBoundingClientRect());
-    for (const i of this.zmogeliai) {
-      console.log(
-        i.getPersonInfo
-          ? i.getPersonInfo()
-          : `Method getPersonInfo() doe's not exist in this (${i.vardas}) object!`
-      );
-    }
-  }
-  mouseX = 0;
-  mouseY = 0;
-  mouseMoveHandler($event: MouseEvent) {
-    console.log($event.type);
-    console.log($event);
-    // this.mouseX = $event.clientX;
-    // this.mouseY = $event.clientY;
-    this.mouseX =
-      $event.clientX - this.rect?.nativeElement.getBoundingClientRect().left;
-    this.mouseY =
-      $event.clientY - this.rect?.nativeElement.getBoundingClientRect().top;
-  }
-
-  isMessageShown = false;
-  messageTogler($event: MouseEvent) {
-    this.isMessageShown = !this.isMessageShown;
-  }
-  zmogeliai: zmogelis[] = [
-    {
-      vardas: 'rokelis',
-      amzius: 27,
-      salary: 2000,
-      currency: 'Eur',
-    },
-    {
-      vardas: 'dŽiujeta',
-      amzius: 27,
-      salary: 3000,
-      currency: 'uSD',
-    },
-    {
-      vardas: 'jonaS',
-      amzius: 39,
-      salary: 4000,
-      currency: 'jpY',
-    },
-    new Zmogelis('toMAS', 21, 3000, 'eUR'),
-    new Zmogelis('gEdas', 39, 999.0555, 'JpY'),
-    new Zmogelis('mindĖ', 33, 10000, 'uSd'),
-  ];
-
-  filterData = this.zmogeliai;
-
-  onFilter($event: any): void {
-    let inp = $event.target.value;
-    this.filterData = this.zmogeliai.filter(
-      (zm) => zm.vardas.toLocaleLowerCase().indexOf(inp) != -1
-    );
-  }
 }
 
 // DĖSTYTOJO:
